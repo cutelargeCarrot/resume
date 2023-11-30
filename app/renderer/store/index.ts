@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './modules/counterStore'
+import globalReducer from './modules/globalStore'
+import templateReducer from './modules/templateStore'
 const store = configureStore({
     reducer:{
-        counter:counterReducer
+        global:globalReducer,
+        resume:globalReducer,
+        template:templateReducer
     }
 })
 

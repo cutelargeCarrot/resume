@@ -1,0 +1,63 @@
+.tools{
+    overflow: auto;
+    height: 100%;
+    background-color: #fff;
+    padding: 5px;
+    padding-right: 1px;
+    .tools-title{
+        margin: 10px 0 5px 5px;
+        font-size: 14px;
+        font-weight: 600;
+        color: gray;
+        padding-left: 5px;
+        border-left: 4px solid gray;
+    }
+    .toolitem{
+        padding: 10px;
+        margin: 4px 0;
+        cursor: pointer;
+        border-radius: 13px;
+        overflow: hidden;
+        background-color: #f8f8f8;
+        .title{
+            font-size: 14px;
+            border-radius: 3px;
+            color: #27292c;
+            .title-require{
+                margin-left: 15px;
+                display: inline-block;
+                background-color: gray;
+                border-radius: 10px;
+                text-align: center;
+                color: white;
+                padding: 0 8px;
+                font-size: 12px;
+            }
+            .btn{
+                display: inline-block;
+                margin-left:10px;
+                font-size: 10px;
+            }
+        }
+        .summary{
+            font-size: 12px;
+            padding: 5px 0;
+            color: #8b8d90;
+        }
+    }
+    .toolitem:hover{
+        background-color: #f2f2f2;
+        box-shadow: 0 0 5px 1px rgb(206, 206, 214);
+    }
+}
+.tools::-webkit-scrollbar{
+    width: 4px !important; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}
+.tools:hover::-webkit-scrollbar-thumb{
+    background-color: #d2d2d2;
+    border-radius: 4px;
+}
+tools{
+    -ms-overflow-style: none;
+}

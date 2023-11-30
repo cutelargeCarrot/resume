@@ -1,0 +1,16 @@
+.content{
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+}
+.content::-webkit-scrollbar{
+    width: 4px !important; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}
+.content:hover::-webkit-scrollbar-thumb{
+    background-color: #d2d2d2;
+    border-radius: 4px;
+}
+.content{
+    -ms-overflow-style: none;
+}

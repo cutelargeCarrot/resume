@@ -5,6 +5,8 @@ import {ROUTER_KEY, ROUTER_ENTRY} from '@common/contants/router'
 import { shell } from 'electron'
 import {isHttpOrHttpsUrl} from '@common/utils/router'
 //
+import MyButton from '@common/components/MyButton'
+//
 import fileAction from '@common/utils/file'
 import { getAppPath } from '@common/utils/appPath'
 
@@ -31,7 +33,7 @@ export default function Root(){
             <div styleName='action'>
                 {
                     ROUTER_ENTRY.map((router:TSRouter.Item,index)=>{
-                        return (<div key={index} styleName='item' onClick={()=>onRouterToLink(router)}> {router.text} </div>)
+                        return (<MyButton key={index} size='big' styleName='button' onClick={()=>onRouterToLink(router)}> {router.text} </MyButton>)
                     })
                 }
             </div>

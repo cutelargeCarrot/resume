@@ -1,0 +1,78 @@
+import React, { useEffect, useState } from 'react'
+import './index.less'
+import RESUME_TOOLS_LIST from '@common/contants/resume';
+import { onAddToolList, onDelToolList} from './utils'
+import { TemplateStore, changeResumeToolKeys } from '@src/store/modules/templateStore';
+import { useSelector, useDispatch } from 'react-redux';
+
+export default function ResumeTools(){
+    const dispatch = useDispatch()
+    const template  = useSelector<any>(state => state.template) as TemplateStore
+
+    const [ addToolList, setAddToolList ] = useState<TSResume.SliderItem[]>([])
+    const [ unAddToolList, setUnAddToolList ] = useState<TSResume.SliderItem[]>([])
+
+    useEffect(()=>{
+        if( RESUME_TOOLS_LIST.length > 0 ){
+            let add:TSResume.SliderItem[] = []
+            let unAdd:TSResume.SliderItem[] = []
+            RESUME_TOOLS_LIST.forEach(item => {
+                item.require ? add.push(item) : unAdd.push(item)
+            });
+            if(!template.resumeToolKeys.length)dispatch(changeResumeToolKeys(add.map(item => item.key)))
+            setAddToolList(add)
+            setUnAddToolList(unAdd)
+        } 
+    },[])
+
+    const onAddSliderAction = (Model:TSResume.SliderItem):void => {
+        const newList = onAddToolList(addToolList,Model)
+        dispatch(changeResumeToolKeys(newList.map((item:TSResume.SliderItem) => item.key)))
+        setAddToolList(newList)
+        setUnAddToolList(onDelToolList(unAddToolList,Model))
+    }
+    const onDelSliderAction = (Model:TSResume.SliderItem):void => {
+        const newList = onDelToolList(addToolList,Model)
+        dispatch(changeResumeToolKeys(newList.map((item:TSResume.SliderItem) => item.key)))
+        setAddToolList(newList)
+        setUnAddToolList(onAddToolList(unAddToolList,Model))
+
+    }
+
+    return(
+        <div styleName='tools'>
+            <div styleName='tools-title'>已添加模块</div>
+            {
+                addToolList.map((item)=>(
+                 <React.Fragment key={item.key}>
+                       <div styleName='toolitem'>
+                        <div styleName='title'>
+                            {item.name}
+                            {item.require && <span styleName='title-require'> 必须 </span>}
+                            <span styleName='btn'>编辑</span>
+                            {!item.require && <span styleName='btn' onClick={()=>onDelSliderAction(item)}>删除</span>}
+                            </div>
+                        <div styleName='summary'>{item.summary}</div>
+                    </div>
+                 </React.Fragment>
+                ))
+            }
+            { !!unAddToolList.length && (
+               <React.Fragment>
+                 <div styleName='tools-title'>未添加模块</div>
+                    {
+                        unAddToolList.map((item)=>(
+                            <React.Fragment key={item.key}>
+                                <div styleName='toolitem' onClick={()=>onAddSliderAction(item) }>
+                                    <div styleName='title'>{item.name}</div>
+                                    <div styleName='summary'>{item.summary}</div>
+                                </div>
+                            </React.Fragment>
+                        ))
+                    }
+               </React.Fragment>
+                )
+            }
+        </div>
+    )
+}
