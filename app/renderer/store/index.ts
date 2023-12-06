@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import globalReducer from './modules/globalStore'
-import templateReducer from './modules/templateStore'
+import resumeReducer from './modules/resumeStore'
 const store = configureStore({
     reducer:{
         global:globalReducer,
-        resume:globalReducer,
-        template:templateReducer
+        resume:resumeReducer,
     }
 })
 

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './index.less'
 import RESUME_TOOLS_LIST from '@common/contants/resume';
 import { onAddToolList, onDelToolList} from './utils'
-import { TemplateStore, changeResumeToolKeys } from '@src/store/modules/templateStore';
+import { ResumeStore, changeResumeToolKeys } from '@src/store/modules/resumeStore';
 import { useSelector, useDispatch } from 'react-redux';
+import Messager, { MESSAGE_EVENT_NAME_MAPS } from '@src/common/messager';
 
 export default function ResumeTools(){
     const dispatch = useDispatch()
-    const template  = useSelector<any>(state => state.template) as TemplateStore
+    const resume  = useSelector<any>(state => state.resume) as ResumeStore
 
     const [ addToolList, setAddToolList ] = useState<TSResume.SliderItem[]>([])
     const [ unAddToolList, setUnAddToolList ] = useState<TSResume.SliderItem[]>([])
@@ -19,7 +20,7 @@ export default function ResumeTools(){
             RESUME_TOOLS_LIST.forEach(item => {
                 item.require ? add.push(item) : unAdd.push(item)
             });
-            if(!template.resumeToolKeys.length)dispatch(changeResumeToolKeys(add.map(item => item.key)))
+            if(!resume.resume.resume_tool_keys.length)dispatch(changeResumeToolKeys(add.map(item => item.key)))
             setAddToolList(add)
             setUnAddToolList(unAdd)
         } 
@@ -31,12 +32,12 @@ export default function ResumeTools(){
         setAddToolList(newList)
         setUnAddToolList(onDelToolList(unAddToolList,Model))
     }
+
     const onDelSliderAction = (Model:TSResume.SliderItem):void => {
         const newList = onDelToolList(addToolList,Model)
         dispatch(changeResumeToolKeys(newList.map((item:TSResume.SliderItem) => item.key)))
         setAddToolList(newList)
         setUnAddToolList(onAddToolList(unAddToolList,Model))
-
     }
 
     return(
@@ -45,12 +46,12 @@ export default function ResumeTools(){
             {
                 addToolList.map((item)=>(
                  <React.Fragment key={item.key}>
-                       <div styleName='toolitem'>
+                       <div styleName='toolitem' onClick={()=>{Messager.send(MESSAGE_EVENT_NAME_MAPS.OPEN_FORM_MODAL,{form_name:item.key})}}>
                         <div styleName='title'>
                             {item.name}
                             {item.require && <span styleName='title-require'> 必须 </span>}
-                            <span styleName='btn'>编辑</span>
-                            {!item.require && <span styleName='btn' onClick={()=>onDelSliderAction(item)}>删除</span>}
+                            {/* <span styleName='btn'>编辑</span> */}
+                            {!item.require && <span styleName='btn' onClick={(e:React.MouseEvent)=>{e.stopPropagation && e.stopPropagation();onDelSliderAction(item)}}>删除</span>}
                             </div>
                         <div styleName='summary'>{item.summary}</div>
                     </div>

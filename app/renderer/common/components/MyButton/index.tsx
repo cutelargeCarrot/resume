@@ -4,7 +4,7 @@ import classnames from 'classnames'
 
 export interface Button {
     // 按钮大小
-    size?:'middle' | 'big' | 'smail'
+    size?:'middle' | 'big' | 'small'
     // 宽度
     width?:number
     // 自定义样式

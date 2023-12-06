@@ -9,7 +9,8 @@ export const RESUME_TOOL_MAPS = {
     certificate: 'certificate', // 获奖证书
     evaluation: 'evaluation', // 个人评价
     skill: 'skill', // 技能清单
-    test: 'test', // 测试用例
+    // test: 'test', // 测试用例
+    others: 'others', // 其他
 }
 
 const RESUME_TOOLS_LIST:TSResume.SliderItem[] = [
@@ -72,13 +73,18 @@ const RESUME_TOOLS_LIST:TSResume.SliderItem[] = [
       name: '技能清单',
       summary: '展示具备的技能，突出你的能力',
       require:false
-    },
-    {
-      key: RESUME_TOOL_MAPS.test,
-      name: '测试用例',
-      summary: '测试用例，一键覆盖',
-      require:false
-    },
+    }
+    // ,{
+    //   key:RESUME_TOOL_MAPS.others,
+    //   name:'自定义',
+    //   summary:'无法满足需求？自己创建一个'
+    // }
+    // {
+    //   key: RESUME_TOOL_MAPS.test,
+    //   name: '测试用例',
+    //   summary: '测试用例，一键覆盖',
+    //   require:false
+    // },
 ]
 
 export default RESUME_TOOLS_LIST

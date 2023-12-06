@@ -138,7 +138,7 @@ export default class MyInput extends React.PureComponent<InputProps,InputState> 
     
       renderClear() {
         const { allowClear } = this.props;
-        return !!allowClear && this.state.text && <i styleName="my-input-clear" onClick={this.onClear} />;
+        return !!allowClear && this.state.text && <i styleName="my-input-clear" onClick={this.onClear}>清空</i>;
       }
     
       renderInput() {
@@ -177,7 +177,7 @@ export default class MyInput extends React.PureComponent<InputProps,InputState> 
               onInput={this.onInput}
               ref={this.saveInput as any}
             />
-            {this.renderClear()}
+            {this.renderClear() }
             {allowCount && (
               <div styleName="my-input-textarea-footer">
                 <span

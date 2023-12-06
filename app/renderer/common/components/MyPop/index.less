@@ -1,0 +1,40 @@
+.MyPop{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(138, 138, 138, 0.25);
+    .center{
+        width: 800px;
+        max-height: 500px;
+        overflow: hidden;
+        background-color: #fff;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        .form{
+            flex: 1;
+            overflow: auto;
+            margin: 10px;
+        }
+        .control{
+            margin: 5px 0 15px 15px;
+        }
+    }
+}
+.form::-webkit-scrollbar{
+    width: 4px !important; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}
+.form:hover::-webkit-scrollbar-thumb{
+    background-color: #d2d2d2;
+    border-radius: 4px;
+}
+.form{
+    -ms-overflow-style: none;
+}
