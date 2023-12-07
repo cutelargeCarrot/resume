@@ -8,7 +8,7 @@ import Messager, { MESSAGE_EVENT_NAME_MAPS } from '@src/common/messager';
 
 export default function ResumeTools(){
     const dispatch = useDispatch()
-    const resume  = useSelector<any>(state => state.resume) as ResumeStore
+    const {resume:{resume_tool_keys}}  = useSelector<any>(state => state.resume) as ResumeStore
 
     const [ addToolList, setAddToolList ] = useState<TSResume.SliderItem[]>([])
     const [ unAddToolList, setUnAddToolList ] = useState<TSResume.SliderItem[]>([])
@@ -17,10 +17,17 @@ export default function ResumeTools(){
         if( RESUME_TOOLS_LIST.length > 0 ){
             let add:TSResume.SliderItem[] = []
             let unAdd:TSResume.SliderItem[] = []
-            RESUME_TOOLS_LIST.forEach(item => {
-                item.require ? add.push(item) : unAdd.push(item)
-            });
-            if(!resume.resume.resume_tool_keys.length)dispatch(changeResumeToolKeys(add.map(item => item.key)))
+            
+            if(!!resume_tool_keys.length){
+                RESUME_TOOLS_LIST.forEach(item => {
+                    resume_tool_keys.includes(item.key)  ? add.push(item) : unAdd.push(item)
+                });
+            } else {
+                RESUME_TOOLS_LIST.forEach(item => {
+                    item.require ? add.push(item) : unAdd.push(item)
+                });
+            }
+            if(!resume_tool_keys.length)dispatch(changeResumeToolKeys(add.map(item => item.key)))
             setAddToolList(add)
             setUnAddToolList(unAdd)
         } 
@@ -50,7 +57,6 @@ export default function ResumeTools(){
                         <div styleName='title'>
                             {item.name}
                             {item.require && <span styleName='title-require'> 必须 </span>}
-                            {/* <span styleName='btn'>编辑</span> */}
                             {!item.require && <span styleName='btn' onClick={(e:React.MouseEvent)=>{e.stopPropagation && e.stopPropagation();onDelSliderAction(item)}}>删除</span>}
                             </div>
                         <div styleName='summary'>{item.summary}</div>

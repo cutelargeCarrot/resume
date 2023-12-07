@@ -5,7 +5,7 @@ export interface ResumeStore{
     resume_id:string,// 简历 id
     resume_name:string,// 简历名称
     resume_template_modal:string, // 简历模板
-    resume_tool_keys:[],
+    resume_tool_keys:string[],
     resume_form:{
         personal:TSResume.Base, // 个人信息
         contact: TSResume.Contact, // 联系方式
@@ -24,13 +24,13 @@ export interface ResumeStore{
             degree?:string
         }, // 教育信息
         workPrefer: TSResume.Work, // 工作期望
-        schoolExperience: TSResume.SchoolExperince, // 在校经历
-        projectExperience: TSResume.ProjectExperience, // 项目经验
-        workExperience: TSResume.WorkExperience, // 工作经历
-        certificate: {}, // 获奖证书
-        evaluation: {}, // 个人评价
-        skill: {}, // 技能清单
-        others: [], // 自定义
+        schoolExperience: TSResume.SchoolExperience[] // 在校经历
+        projectExperience: TSResume.ProjectExperience[] // 项目经验
+        workExperience: TSResume.WorkExperience[] // 工作经历
+        certificate: string[] // 获奖证书
+        evaluation: string[] // 个人评价
+        skill: string[] // 技能清单
+        others: [] // 自定义
     }
   }
 }
@@ -48,9 +48,9 @@ const resumeStore = createSlice({
                 contact: {}, // 联系方式
                 education: {}, // 教育信息
                 workPrefer: {}, // 工作期望
-                schoolExperience: {}, // 在校经历
-                projectExperience: {}, // 项目经验
-                workExperience: {}, // 工作经历
+                schoolExperience: [], // 在校经历
+                projectExperience: [], // 项目经验
+                workExperience: [], // 工作经历
                 certificate: {}, // 获奖证书
                 evaluation: {}, // 个人评价
                 skill: {}, // 技能清单

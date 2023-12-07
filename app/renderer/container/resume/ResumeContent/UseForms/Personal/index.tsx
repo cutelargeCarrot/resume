@@ -26,7 +26,7 @@ export default function Personal({ onClose }: props) {
                 placeholder="请输入姓名"
                 allowClear={true} />
             </div>
-            <div styleName='g-form-item'><div styleName='g-item-title'><span styleName='require'>*</span>地区 :</div><MyInput onChange={(e) => { changeInfo('area', e.target?.value || '') }}
+            <div styleName='g-form-item'><div styleName='g-item-title'>地区 :</div><MyInput onChange={(e) => { changeInfo('area', e.target?.value || '') }}
                 value={personal?.area || ''}
                 placeholder="请输入地区"
                 allowClear={true} />
@@ -36,7 +36,7 @@ export default function Personal({ onClose }: props) {
                 placeholder="请输入籍贯"
                 allowClear={true} />
             </div>
-            <div styleName='g-form-item'><div styleName='g-item-title'><span styleName='require'>*</span>政治面貌 :</div><MyInput onChange={(e) => { changeInfo('political', e.target?.value || '') }}
+            <div styleName='g-form-item'><div styleName='g-item-title'>政治面貌 :</div><MyInput onChange={(e) => { changeInfo('political', e.target?.value || '') }}
                 value={personal?.political || ''}
                 placeholder="请输入政治面貌"
                 allowClear={true} />

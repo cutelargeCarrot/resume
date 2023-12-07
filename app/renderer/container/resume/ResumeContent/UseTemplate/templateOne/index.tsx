@@ -2,8 +2,20 @@ import React from 'react'
 import './index.less'
 import Avatar from './components/Avatar'
 import BaseInfo from './components/BaseInfo'
+import { useSelector } from 'react-redux'
+import { ResumeStore } from '@src/store/modules/resumeStore'
+import { RESUME_TOOL_MAPS } from '@src/common/contants/resume'
+import Contact from './components/Contact'
+import Job from './components/Job'
+import Certificate from './components/Certificate'
+import Synopsis from './components/Synopsis'
+import Skill from './components/Skill'
+import Post from './components/Post'
+import Project from './components/Project'
+import Work from './components/Work'
 
 export default function templateOne(){
+  const { resume:{resume_form:{personal},resume_tool_keys} } = useSelector<any>(state => state.resume) as ResumeStore
     return (
         <div styleName="a4-box">
         <div styleName="flex container" id="visPdf">
@@ -15,19 +27,19 @@ export default function templateOne(){
             <div styleName="fillColor" />
             <div styleName="baseData">
               <BaseInfo />
-              {/* {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.contact) && <Contact />} */}
-              {/* {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.workPrefer) && <Job />} */}
-              {/* {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.certificate) && <Certificate />} */}
+              {resume_tool_keys.includes(RESUME_TOOL_MAPS.contact) && <Contact />}
+              {resume_tool_keys.includes(RESUME_TOOL_MAPS.workPrefer) && <Job />}
+              {resume_tool_keys.includes(RESUME_TOOL_MAPS.certificate) && <Certificate />}
             </div>
           </div>
           {/* 内容 */}
           <div styleName="center">
-            {/* {(resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.evaluation) || base?.username) && <Synopsis />} */}
+            {(resume_tool_keys.includes(RESUME_TOOL_MAPS.evaluation) || personal?.username) && <Synopsis />}
             <div styleName="listData">
-              {/* {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.skill) && <Skill />} */}
-              {/* {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.schoolExperience) && <Post />} */}
-              {/* {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.projectExperience) && <Project />} */}
-              {/* {resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.workExperience) && <Work />} */}
+              {resume_tool_keys.includes(RESUME_TOOL_MAPS.skill) && <Skill />}
+              {resume_tool_keys.includes(RESUME_TOOL_MAPS.schoolExperience) && <Post />}
+              {resume_tool_keys.includes(RESUME_TOOL_MAPS.projectExperience) && <Project />}
+              {resume_tool_keys.includes(RESUME_TOOL_MAPS.workExperience) && <Work />}
             </div>
           </div>
         </div>

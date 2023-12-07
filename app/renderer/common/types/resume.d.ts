@@ -60,7 +60,8 @@ declare namespace TSResume {
         date?: number;
       }
     // 在校经验
-    export interface SchoolExperince extends Experience {
+    export interface SchoolExperience extends Experience {
+        id:number
         // 部门
         department?:string
         // 职位
@@ -72,6 +73,7 @@ declare namespace TSResume {
 
     // 工作经验
     export interface WorkExperience extends Experience {
+        id:number
          // 部门
          department?:string
          // 职位
@@ -83,6 +85,7 @@ declare namespace TSResume {
 
       // 项目经验
       export interface ProjectExperience extends Experience {
+        id:number
         // 项目名
         projectName?:string
         // 职位
@@ -95,19 +98,19 @@ declare namespace TSResume {
    // 简历信息
    export interface IntactResume {
     base:Base
-    skill:string
-    skillList:string[]
+    skill:string[]
+    // skillList:string[]
     hobby:string
     // 个人评价
-    evaluation:string
-    evaluationList:string[]
+    evaluation:string[]
+    // evaluationList:string[]
     // 荣誉证书
-    certificate:string
-    certificateList:string[]
+    certificate:string[]
+    // certificateList:string[]
     contact:Contact
     work:Work
     workExperience?:WorkExperience[]
-    schoolExperience?:SchoolExperince[]
+    schoolExperience?:SchoolExperience[]
     projectExperience?:ProjectExperience[]
    }
 
