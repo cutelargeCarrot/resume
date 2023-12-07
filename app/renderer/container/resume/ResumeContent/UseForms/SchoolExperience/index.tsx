@@ -58,6 +58,7 @@ export default function SchoolExperience({onClose}:props){
             parseContent,
             beginTime,
             endTime
+            
         }
         let schoolExperience
         if(!id)schoolExperience = [...resume_form.schoolExperience,newForm]
@@ -81,14 +82,12 @@ export default function SchoolExperience({onClose}:props){
         <MyPop config={{cancelBtn:{callback:onClose}}}>
         <div styleName='g-title'>在校经历</div>
         <div styleName='form'>
-            {/* 左侧 */}
             <div styleName='left'>
                 <div styleName='left-item' onClick={()=>changeForm(0)}>添加经历</div>
                 { schoolExperience && !!schoolExperience.length && schoolExperience.map(item=>(
                         <div key={item.id} styleName='left-item' onClick={()=>changeForm(item.id)}>{item.department} <span onClick={(e:React.MouseEvent)=>{e.stopPropagation && e.stopPropagation();delForm(item.id)}}>删除</span></div>
                 ))}
             </div>
-            {/* 右侧 */}
             <div styleName='right'>
                 <div styleName='right-title'>{department || '新的经历'}</div>
                 <div styleName='g-form-item'>
