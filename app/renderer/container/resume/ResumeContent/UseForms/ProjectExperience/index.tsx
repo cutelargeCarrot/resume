@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 interface props {
     onClose: () => void;
     }
+    
 export default function ProjectExperience({onClose}:props){
    
     const [id,setId] = useState(0)

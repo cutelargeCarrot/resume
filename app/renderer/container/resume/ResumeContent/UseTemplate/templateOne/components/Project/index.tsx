@@ -28,7 +28,7 @@ function Project() {
                       {!experience?.beginTime && experience?.endTime && <span>{experience?.endTime}</span>}
                       {experience?.beginTime && experience?.endTime && (
                         <span>
-                          {experience?.endTime} - {experience?.endTime}
+                          {experience?.beginTime} - {experience?.endTime}
                         </span>
                       )}
                     </p>
