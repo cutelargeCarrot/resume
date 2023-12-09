@@ -31,6 +31,7 @@ export default function Work({onClose}:props){
                 placeholder="请输入工作地点"
                 allowClear={true} />
             </div>
+            <div styleName="g-tips"> * 多个评价以 | 分割</div>
     </MyPop>
     )
 }

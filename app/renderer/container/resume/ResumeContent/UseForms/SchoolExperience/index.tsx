@@ -33,6 +33,7 @@ export default function SchoolExperience({onClose}:props){
        if(id){
         schoolExperience.forEach(element => {
            if( element.id == id){
+            setId(id)
             setDepartment(element.department!)
             setPost(element.post!)
             setParseContent(element.parseContent!)
@@ -41,6 +42,7 @@ export default function SchoolExperience({onClose}:props){
            }
         });
        } else {
+        setId(0)
         setDepartment(' ')
         setPost(' ')
         setParseContent([' '])
@@ -67,6 +69,7 @@ export default function SchoolExperience({onClose}:props){
         },[])
         dispatch(changeResumeForm({...resume_form,schoolExperience}))
         setDepartment(' ')
+        setId(0)
         setPost(' ')
         setBeginTime(' ')
         setEndTime(' ')

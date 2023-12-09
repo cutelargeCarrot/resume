@@ -26,6 +26,7 @@ export default function WrapperExperience({onClose}:props){
         workExperience.forEach(element => {
            if( element.id == id){
             setDepartment(element.department!)
+            setId(id)
             setPost(element.post!)
             setParseContent(element.parseContent!)
             setBeginTime(element.beginTime!)
@@ -34,6 +35,7 @@ export default function WrapperExperience({onClose}:props){
         });
        } else {
         setDepartment(' ')
+        setId(0)
         setPost(' ')
         setParseContent([' '])
         setBeginTime(' ')
@@ -58,6 +60,7 @@ export default function WrapperExperience({onClose}:props){
         },[])
         dispatch(changeResumeForm({...resume_form,workExperience}))
         setDepartment(' ')
+        setId(0)
         setPost(' ')
         setParseContent([' '])
         setBeginTime(' ')

@@ -28,6 +28,7 @@ export default function ProjectExperience({onClose}:props){
        if(id){
         projectExperience.forEach(element => {
            if( element.id == id){
+            setId(id)
             setProjectName(element.projectName!)
             setPost(element.post!)
             setParseContent(element.parseContent!)
@@ -36,6 +37,7 @@ export default function ProjectExperience({onClose}:props){
            }
         });
        } else {
+        setId(0)
         setProjectName(' ')
         setPost(' ')
         setBeginTime(' ')
@@ -55,11 +57,14 @@ export default function ProjectExperience({onClose}:props){
             endTime
         }
         let projectExperience
-        if(!id)projectExperience = [...resume_form.projectExperience,newForm]
+        if(!id)
+            projectExperience = [...resume_form.projectExperience,newForm]
         else projectExperience = resume_form.projectExperience.reduce((pre:any,item:any)=>{
             return item.id == id ? [...pre,newForm] : [...pre,item]
         },[])
+        console.log(projectExperience)
         dispatch(changeResumeForm({...resume_form,projectExperience}))
+        setId(0)
         setProjectName(' ')
         setPost(' ')
         setBeginTime(' ')
