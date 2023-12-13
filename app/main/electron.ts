@@ -2,12 +2,23 @@
  * @desc electron 主入口
  */
  import path from 'path';
- import { app, BrowserWindow, ipcMain } from 'electron';
+ import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 
  //  app 模块获取项目路径，通过 ipcMain 回复渲染进程
  const ROOT_PATH = path.join(app.getAppPath(),'../') 
  ipcMain.on('get-root-path',(event,arg)=>{
   event.reply('reply-root-path',ROOT_PATH)
+ })
+
+ // 保存路径
+ ipcMain.on('open-save-resume-path',(event,arg)=>{
+  dialog.showOpenDialog({ properties:['openDirectory'] })
+  .then(result=>{
+    event.reply('reply-save-resume-path',result.filePaths)
+  })
+  .catch(err=>{
+    event.reply('reply-save-resume-path',err)
+  })
  })
 
  function isDev() {
@@ -25,12 +36,25 @@
        nodeIntegration: true,
      },
    });
+
+   const settingWindow = new BrowserWindow({
+    width: 720,
+    height: 300,
+    resizable:false,
+    webPreferences: {
+      devTools: true,
+      nodeIntegration: true,
+    },
+  });
  
    if (isDev()) {
      // 开发环境下，我们加载的是运行在 7001 端口的 React
-     mainWindow.loadURL(`http://127.0.0.1:7001`);
+     mainWindow.loadURL(`http://127.0.0.1:7001/index.html`);
+     settingWindow.loadURL(`http://127.0.0.1:7001/setting.html`);
    } else {
      mainWindow.loadURL(`file://${path.join(__dirname, '../dist/index.html')}`);
+     settingWindow.loadURL(`file://${path.join(__dirname, '../dist/setting.html')}`);
+
    }
  }
  
